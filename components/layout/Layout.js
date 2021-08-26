@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './header';
-import { Global, css } from '@emotion/react';
+import { jsx, Global, css } from '@emotion/react';
 import Head from 'next/head'
 
 const Layout = props => {
@@ -10,8 +10,9 @@ const Layout = props => {
             styles={css`
                 :root{
                     --gris: #3d3d3d;
-                    --gris2: #6f6f6f
+                    --gris2: #6f6f6f;
                     --naranja: #da552f;
+                    --gris3: #e1e1e1;
 
                 }
                 html{
