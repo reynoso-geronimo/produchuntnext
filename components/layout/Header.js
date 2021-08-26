@@ -37,7 +37,14 @@ const Header = () => {
       `}
     >
       <ContenedorHeader>
-        <div>
+        <div
+          css={css`
+              display: flex;
+              align-items: center;
+
+          
+          `}
+        >
           <Link href="/" passHref>
             <Logo>P</Logo>
           </Link>
@@ -65,10 +72,10 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link href="/">
+              <Link href="/" passHref>
                 <Boton bgColor="true">Login</Boton>
               </Link>
-              <Link href="/">
+              <Link href="/" passHref>
                 <Boton>Crear Cuenta</Boton>
               </Link>
             </>
