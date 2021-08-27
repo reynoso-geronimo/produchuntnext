@@ -3,10 +3,10 @@ import Layout from '../components/layout/Layout'
 
 
 
-export default function Home() {
+export default function NuevoProducto() {
   return (
     <Layout>
-      <h1>Inicio</h1>
+      <h1>Nuevo Producto</h1>
       
     </Layout>
   );
