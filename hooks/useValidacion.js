@@ -15,7 +15,7 @@ const useValidacion = (stateInicial, validar, fn) => {
            }
            setSubmitForm(false)
        } 
-    },[])
+    },[errores])
 
     // funcion que se ejecuta conforme el usuario escribe algo
 
@@ -30,6 +30,7 @@ const useValidacion = (stateInicial, validar, fn) => {
     const handleSubmit = e=>{
         e.preventDefault();
         const erroresValidacion= validar(valores)
+        console.log(valores)
         setErrores(erroresValidacion);
         setSubmitForm(true)
     }

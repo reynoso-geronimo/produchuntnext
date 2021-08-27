@@ -3,18 +3,39 @@ import { css } from "@emotion/react";
 import Layout from "../components/layout/Layout";
 import { Formulario, Campo, InputSubmit } from "../components/ui/Formulario";
 
+//validaciones
+import useValidacion from "../hooks/useValidacion";
+import validarCrearCuenta from "../validacion/validarCrearCuenta";
 
 export default function CrearCuenta() {
+  const STATE_INICIAL = {
+    nombre: "",
+    email: "",
+    password:"",
+  };
+
+  const { valores, errores, submitForm, handleSubmit, handleChange } =
+useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta);
+  const {nombre,email,password}= valores
+function crearCuenta() {
+    console.log("creando Cuenta");
+  }
+
   return (
     <Layout>
       <>
         <h1
           css={css`
-            text-align:center;
-            margin-top:5rem;
+            text-align: center;
+            margin-top: 5rem;
           `}
-        >Crear Cuenta</h1>
-        <Formulario>
+        >
+          Crear Cuenta
+        </h1>
+        <Formulario
+          onSubmit={handleSubmit}
+          noValidate
+        >
           <Campo>
             <label htmlFor="nombre">Nombre</label>
             <input
@@ -22,6 +43,8 @@ export default function CrearCuenta() {
               id="nombre"
               placeholder="Tu Nombre"
               name="nombre"
+              value={nombre}
+              onChange={handleChange}
             />
           </Campo>
 
@@ -32,6 +55,8 @@ export default function CrearCuenta() {
               id="email"
               placeholder="Tu Email"
               name="email"
+              value={email}
+              onChange={handleChange}
             />
           </Campo>
 
@@ -42,6 +67,8 @@ export default function CrearCuenta() {
               id="password"
               placeholder="Tu Password"
               name="password"
+              value={password}
+              onChange={handleChange}
             />
           </Campo>
           <InputSubmit type="submit" value="Crear Cuenta" />
