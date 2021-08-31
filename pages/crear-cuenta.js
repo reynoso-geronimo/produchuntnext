@@ -15,12 +15,14 @@ import firebase from "../firebase";
 import useValidacion from "../hooks/useValidacion";
 import validarCrearCuenta from "../validacion/validarCrearCuenta";
 
+const STATE_INICIAL = {
+  nombre: "",
+  email: "",
+  password: "",
+};
+
 export default function CrearCuenta() {
-  const STATE_INICIAL = {
-    nombre: "",
-    email: "",
-    password: "",
-  };
+  
 
   const [error, setError]=useState(false)
 

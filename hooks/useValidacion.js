@@ -37,7 +37,7 @@ const useValidacion = (stateInicial, validar, fn) => {
     const handleBlur=()=>{
         const erroresValidacion= validar(valores)
         setErrores(erroresValidacion);
-        setSubmitForm(true)
+        
     }
     return {
         valores,
