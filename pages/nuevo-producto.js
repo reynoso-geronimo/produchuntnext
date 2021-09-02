@@ -13,12 +13,14 @@ import firebase from "../firebase";
 
 //validaciones
 import useValidacion from "../hooks/useValidacion";
-import validarCrearCuenta from "../validacion/validarCrearCuenta";
+import validarCrearProducto from "../validacion/validarCrearProducto";
 
 const STATE_INICIAL = {
   nombre: "",
-  email: "",
-  password: "",
+  empresa: "",
+ // imagen: "",
+  url:"",
+  descripcion:"",
 };
 export default function NuevoProducto() {
   
@@ -26,18 +28,12 @@ export default function NuevoProducto() {
   const [error, setError]=useState(false)
 
   const { valores, errores, handleSubmit, handleChange, handleBlur } =
-    useValidacion(STATE_INICIAL, validarCrearCuenta, crearCuenta);
-  const { nombre, email, password } = valores;
-
-  async function crearCuenta() {
-    try {
-      await firebase.registrar(nombre, email, password);
-      Router.push('/');
-    } catch (error) {
-      console.error("hubo un error al crear el usuario", error);
-      setError(error.message);
-    }
-  }
+    useValidacion(STATE_INICIAL, validarCrearProducto, crearCuenta);
+  const { nombre, empresa, imagen, url, descripcion } = valores;
+ async function crearCuenta(){
+   
+ }
+  
 
   return (
     <Layout>
@@ -48,9 +44,14 @@ export default function NuevoProducto() {
             margin-top: 5rem;
           `}
         >
-          Crear Cuenta
+          Nuevo Producto
         </h1>
         <Formulario onSubmit={handleSubmit} noValidate>
+
+          <fieldset>
+            <legend>Informacion General</legend>
+         
+
           <Campo>
             <label htmlFor="nombre">Nombre</label>
             <input
@@ -65,33 +66,67 @@ export default function NuevoProducto() {
           </Campo>
           {errores.nombre && <Error>{errores.nombre}</Error>}
           <Campo>
-            <label htmlFor="email">Email</label>
+            <label htmlFor="empresa">Empresa</label>
             <input
-              type="email"
-              id="email"
-              placeholder="Tu Email"
-              name="email"
-              value={email}
+              type="text"
+              id="empresa"
+              placeholder="Nombre Empresa"
+              name="empresa"
+              value={empresa}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </Campo>
-          {errores.email && <Error>{errores.email}</Error>}
+          {errores.empresa && <Error>{errores.empresa}</Error>}
+          
+          {/* <Campo>
+            <label htmlFor="imagen">Imagen</label>
+            <input
+              type="file"
+              id="imagen"
+              name="imagen"
+              value={imagen}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </Campo>
+          {errores.imagen && <Error>{errores.imagen}</Error>} */}
+
           <Campo>
-            <label htmlFor="password">Password</label>
+            <label htmlFor="url">URL</label>
             <input
-              type="password"
-              id="password"
-              placeholder="Tu Password"
-              name="password"
-              value={password}
+              type="url"
+              id="url"
+              name="url"
+              placeholder="URL de tu producto"
+              value={url}
               onChange={handleChange}
               onBlur={handleBlur}
             />
           </Campo>
-          {errores.password && <Error>{errores.password}</Error>}
+          {errores.url && <Error>{errores.url}</Error>}
+      
+          </fieldset>
+          <fieldset>
+            <legend>Sobre tu Producto</legend>
+
+            <Campo>
+            <label htmlFor="descripcion">Descripcion</label>
+            <textarea
+              
+              id="descripcion"
+              name="descripcion"
+              value={descripcion}
+              onChange={handleChange}
+              onBlur={handleBlur}
+            />
+          </Campo>
+          {errores.descripcion && <Error>{errores.descripcion}</Error>}
+
+          </fieldset>
+         
           {error&&<Error>{error}</Error>}
-          <InputSubmit type="submit" value="Crear Cuenta" />
+          <InputSubmit type="submit" value="Crear Producto" />
         </Formulario>
       </>
     </Layout>
