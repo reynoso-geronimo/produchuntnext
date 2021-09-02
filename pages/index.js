@@ -1,7 +1,7 @@
 import React ,{useEffect,useState,useContext}from 'react';
 import Layout from '../components/layout/Layout'
 import {FirebaseContext} from '../firebase'
-
+import DetallesProducto from '../components/layout/detallesProducto';
 
 
 export default function Home() {
@@ -28,9 +28,22 @@ export default function Home() {
   }
 
   return (
-    <Layout>
-      <h1>Inicio</h1>
+    <div>
+      <Layout>
+      <div className='listado-productos'>
+        <div className='contenedor'>
+          <div className='bg-white'>
+            {productos.map(producto=>(
+              <DetallesProducto
+                key={producto.id}
+                producto={producto}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
       
     </Layout>
+    </div>
   );
 }
