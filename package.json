@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@babel/core": "^7.15.0",
     "@emotion/babel-preset-css-prop": "^11.2.0",
     "@emotion/core": "^11.0.0",
     "@emotion/react": "^11.4.1",
@@ -18,7 +19,8 @@
     "firebase-admin": "^8.9.0",
     "next": "11.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "react-firebase-file-uploader": "^2.4.4"
   },
   "devDependencies": {
     "eslint": "7.32.0",
