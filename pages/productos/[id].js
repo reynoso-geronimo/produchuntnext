@@ -34,7 +34,7 @@ const Producto = () => {
   const [error, setError] = useState(false);
   const [comentario, setComentario] = useState({});
   const [consultarDB, setConsultarDB]= useState(true)
-
+  const [puedeVotar, setPuedeVotar]=useState(true)
   //routing para obtener el id actual
   const router = useRouter();
   const {
@@ -83,7 +83,7 @@ const Producto = () => {
     const nuevoTotal = votos + 1;
     //actualizar en la base de datos
     //ferificar que el usuario ha votado
-    if (haVotado.includes(usuario.uid)) return;
+    if (haVotado.includes(usuario.uid)||!puedeVotar) return;
 
     //guardar el usuario del id que ha votado
     const nuevoHaVotado = [...haVotado, usuario.uid];
@@ -99,6 +99,7 @@ const Producto = () => {
       votos: nuevoTotal,
     });
     setConsultarDB(true);
+    setPuedeVotar(false);
   };
   //functiones para comentarios
   const comentarioChange = (e) => {
