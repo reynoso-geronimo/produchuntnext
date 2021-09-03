@@ -2,6 +2,7 @@ import React, { useState,useContext } from "react";
 import { css } from "@emotion/react";
 import Router,{useRouter} from 'next/router';
 import Layout from "../components/layout/Layout";
+import Error404 from "../components/layout/404";
 import {
   Formulario,
   Campo,
@@ -28,7 +29,7 @@ export default function NuevoProducto() {
   const [subiendo, setSubiendo]=useState(false)
   const [progreso, setProgreso]=useState(0)
   const [urlimagen, setUrlimagen]= useState('')
-
+  
   const [error, setError]=useState(false)
 
   const { valores, errores, handleSubmit, handleChange, handleBlur } =
@@ -56,7 +57,13 @@ export default function NuevoProducto() {
      descripcion,
      votos:0,
      comentarios:[],
-     creado:Date.now()
+     creado:Date.now(),
+     creador:{
+       id:usuario.uid,
+       nombre:usuario.displayName
+     },
+     haVotado:[]
+
    }
    //insersartlo en la base de datos
    firebase.db.collection('productos').add(producto)
@@ -85,14 +92,15 @@ export default function NuevoProducto() {
    .child(nombre)
    .getDownloadURL()
    .then(url => {
-      console.log(url)
+      
       setUrlimagen(url)
   });
  };
 
   return (
     <Layout>
-      <>
+      {!usuario?<Error404/>:(
+        <>
         <h1
           css={css`
             text-align: center;
@@ -112,7 +120,7 @@ export default function NuevoProducto() {
             <input
               type="text"
               id="nombre"
-              placeholder="Tu Nombre"
+              placeholder="Nombre del producto"
               name="nombre"
               value={nombre}
               onChange={handleChange}
@@ -189,6 +197,8 @@ export default function NuevoProducto() {
           <InputSubmit type="submit" value="Crear Producto" />
         </Formulario>
       </>
+      )}
+      
     </Layout>
   );
 }

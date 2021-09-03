@@ -89,7 +89,7 @@ const DetallesProducto = ({ producto }) => {
     urlimagen,
     votos,
   } = producto;
-  console.log(producto);
+
   return (
     <Producto>
       <DescripcionProducto>

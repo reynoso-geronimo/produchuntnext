@@ -33,7 +33,7 @@ export default function Login() {
     try {
       await firebase.login(email,password)
       Router.push('/')
-      console.log('iniciando sesion')
+     
       
     } catch (error) {
       console.error("hubo un error al iniciar Sesion", error);
