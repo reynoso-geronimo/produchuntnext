@@ -57,7 +57,7 @@ const Producto = () => {
       };
       obtenerProducto();
     }
-  }, [id]);
+  }, [id,consultarDB]);
 
   if (Object.keys(producto).length === 0 &&!error) return `Cargando...`;
 
