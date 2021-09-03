@@ -32,14 +32,14 @@ export default function Home() {
       <Layout>
       <div className='listado-productos'>
         <div className='contenedor'>
-          <div className='bg-white'>
+          <ul className='bg-white'>
             {productos.map(producto=>(
               <DetallesProducto
                 key={producto.id}
                 producto={producto}
               />
             ))}
-          </div>
+          </ul>
         </div>
       </div>
       
